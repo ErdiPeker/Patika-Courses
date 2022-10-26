@@ -1,0 +1,2 @@
+DELETE FROM employee
+WHERE id IN (13,14,25,46,43);
