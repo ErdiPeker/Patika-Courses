@@ -5,12 +5,16 @@ public class Monster {
     private int id;
     private int damage;
     private int health;
+    private int award;
+    private int originalHealth;
 
-    public Monster(String name, int id, int damage, int health) {
+    public Monster(String name, int id, int damage, int health,int award) {
         this.name = name;
         this.id = id;
         this.damage = damage;
         this.health = health;
+        this.award=award;
+        this.originalHealth=health;
     }
 
     public String getName() {
@@ -42,6 +46,25 @@ public class Monster {
     }
 
     public void setHealth(int health) {
+        if(health<0){
+            health=0;
+        }
         this.health = health;
+    }
+
+    public int getAward() {
+        return award;
+    }
+
+    public void setAward(int award) {
+        this.award = award;
+    }
+
+    public int getOriginalHealth() {
+        return originalHealth;
+    }
+
+    public void setOriginalHealth(int originalHealth) {
+        this.originalHealth = originalHealth;
     }
 }
