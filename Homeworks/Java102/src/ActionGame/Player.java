@@ -10,6 +10,7 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
+        this.inventory= new Inventory();
     }
 
     public void selectChar(){
@@ -26,24 +27,30 @@ public class Player {
         System.out.println("---------------------------------------------");
         int selectChar= input.nextInt();
         switch (selectChar){
-            case 1:
-                character=new Samurai();
-                break;
             case 2:
-                character=new Archer();
+                this.character=new Archer();
                 break;
             case 3:
-                character=new Knight();
+                this.character=new Knight();
                 break;
             default:
-                character=new Samurai();
+                this.character=new Samurai();
 
         }
-        System.out.println(character.getName()+"\n"+
-                        "Damage:"+character.getDamage()+"\n"+
-                        "Health:"+character.getHealth()+"\n"+
-                        "Money:"+character.getMoney());
+        System.out.println(this.character.getName()+"\n"+
+                        "Damage:"+this.character.getDamage()+"\n"+
+                        "Health:"+this.character.getHealth()+"\n"+
+                        "Money:"+this.character.getMoney());
     }
+
+    public void printInfo(){
+        System.out.println(this.character.getName()+
+                ", Weapon : "+this.getInventory().getWeapon().getName() +
+                ", Damage : "+this.getTotalDamage()+
+                ", Health : "+this.character.getHealth()+
+                ", Money : "+this.character.getMoney());
+    }
+
 
     public Inventory getInventory() {
         return inventory;
@@ -54,14 +61,23 @@ public class Player {
     }
 
 
-
     public String getName() {
         return name;
+    }
+
+    public int getTotalDamage(){
+        return this.character.getDamage()+this.inventory.getWeapon().getDamage();
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public GameChar getCharacter() {
+        return character;
+    }
 
+    public void setCharacter(GameChar character) {
+        this.character = character;
+    }
 }

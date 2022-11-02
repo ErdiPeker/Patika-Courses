@@ -16,6 +16,31 @@ public class Game {
         System.out.println("Please, choose a character to start this experience ! ");
         player.selectChar();
 
+        Location location=null;
+
+        while (true){
+            System.out.println("------------------------------");
+            player.printInfo();
+            System.out.println("-----------Locations----------");
+            System.out.println("1-Safe House");
+            System.out.println("2-Tool Store");
+            System.out.println("Please choose where to go !");
+            int selectLoc=input.nextInt();
+            switch (selectLoc){
+                case 2:
+                    location= new ToolStore(player);
+                    break;
+                default:
+                    location = new SafeHouse(player);
+            }
+
+            if(!location.onLocation()){
+                System.out.println("Game Over!");
+                break;
+            }
+
+        }
+
     }
 
     /*public Game(Player player, Location location) {
