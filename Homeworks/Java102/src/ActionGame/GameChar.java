@@ -6,6 +6,7 @@ public class GameChar {
     private int damage;
     private int health;
     private int money;
+    private int originalHealth;
 
     public GameChar( int id, String name,int damage, int health, int money) {
         this.id=id;
@@ -13,6 +14,7 @@ public class GameChar {
         this.damage = damage;
         this.health = health;
         this.money = money;
+        this.originalHealth=health;
     }
 
     public int getId() {
@@ -53,5 +55,13 @@ public class GameChar {
 
     public void setMoney(int money) {
         this.money = money;
+    }
+
+    public int getOriginalHealth() {
+        return originalHealth;
+    }
+
+    public void setOriginalHealth(int originalHealth) {
+        this.originalHealth = originalHealth;
     }
 }

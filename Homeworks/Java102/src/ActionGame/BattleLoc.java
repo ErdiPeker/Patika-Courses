@@ -28,6 +28,9 @@ public abstract class BattleLoc extends Location{
             if(combat(monsterNumber)){
                 System.out.println("You have won the location");
                 return true;
+            }else{
+                System.out.println("You have ran away");
+                return true;
             }
         }
 
@@ -61,6 +64,8 @@ public abstract class BattleLoc extends Location{
                         this.getPlayer().getCharacter().setHealth(this.getPlayer().getCharacter().getHealth()-monsterDamage);
                         afterHit();
                     }
+                }else{
+                    return false;
                 }
             }
 
