@@ -37,17 +37,16 @@ public class Player {
                 this.character=new Samurai();
 
         }
-        System.out.println(this.character.getName()+"\n"+
-                        "Damage:"+this.character.getDamage()+"\n"+
-                        "Health:"+this.character.getHealth()+"\n"+
-                        "Money:"+this.character.getMoney());
+
     }
 
     public void printInfo(){
         System.out.println(this.character.getName()+
                 ", Weapon : "+this.getInventory().getWeapon().getName() +
+                ", Armor : "+this.getInventory().getArmor().getName() +
                 ", Damage : "+this.getTotalDamage()+
                 ", Health : "+this.character.getHealth()+
+                ", Block : "+this.getInventory().getArmor().getBlock() +
                 ", Money : "+this.character.getMoney());
     }
 

@@ -24,7 +24,7 @@ public class ToolStore extends NormalLoc{
                 break;
             case 2:
                 printArmor();
-
+                buyArmor();
                 break;
             case 3:
                 System.out.println("Please come again in future!");
@@ -70,5 +70,35 @@ public class ToolStore extends NormalLoc{
     }
     public void printArmor(){
         System.out.println("-----------  Armors  -----------");
+        for(Armor armor:Armor.armors()){
+            System.out.println(armor.getId() + "-" + armor.getName() +
+                    " < Price : " +armor.getPrice() +
+                    " , Block : "+ armor.getBlock() +" >");
+        }
+    }
+
+    public void buyArmor(){
+        System.out.println("Choose:");
+
+        int selectArmorID= Location.input.nextInt();
+        while(selectArmorID<1 || selectArmorID>Armor.armors().length){
+            System.out.println("Try Again!");
+            selectArmorID = Location.input.nextInt();
+        }
+
+        Armor selectedArmor = Armor.getArmorObjByID(selectArmorID);
+
+        if(selectedArmor!=null){
+            if(selectedArmor.getPrice()>this.getPlayer().getCharacter().getMoney()){
+                System.out.println("You don't have enough money!");
+            }else{
+                System.out.println(selectedArmor.getName() + " has been bought !");
+                int balance = this.getPlayer().getCharacter().getMoney()-selectedArmor.getPrice();
+                this.getPlayer().getCharacter().setMoney(balance);
+                System.out.println("Balance after payment : " + this.getPlayer().getCharacter().getMoney());
+                this.getPlayer().getInventory().setArmor(selectedArmor);
+
+            }
+        }
     }
 }
