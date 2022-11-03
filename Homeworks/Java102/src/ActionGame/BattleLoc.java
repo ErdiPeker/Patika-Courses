@@ -1,11 +1,10 @@
 package ActionGame;
 
-import java.util.Locale;
 import java.util.Random;
 
 public abstract class BattleLoc extends Location{
     private Monster monster;
-    private String award;
+    private  String award;
     private int maxMonster;
 
     public BattleLoc(Player player, String name ,Monster monster,String award,int maxMonster) {
@@ -28,10 +27,10 @@ public abstract class BattleLoc extends Location{
             if(combat(monsterNumber)){
                 System.out.println("You have won the location");
                 return true;
-            }else{
-                System.out.println("You have ran away");
-                return true;
             }
+        }else{
+            System.out.println("You have ran away");
+            return true;
         }
 
         if (this.getPlayer().getCharacter().getHealth()<=0){
@@ -72,10 +71,60 @@ public abstract class BattleLoc extends Location{
             if(this.getMonster().getHealth()<this.getPlayer().getCharacter().getHealth()){
                 System.out.println("You have killed the monster!");
                 System.out.println("You have won "+this.getMonster().getAward()+" gold.");
+                System.out.println("You are awarded with "+this.getAward());
+                if (this.getAward().equals("food")){
+                    this.getPlayer().getInventory().setFood(true);
+                }
+                else if(this.getAward().equals("firewood")){
+                    this.getPlayer().getInventory().setFirewood(true);
+                }
+                else if(this.getAward().equals("water")){
+                    this.getPlayer().getInventory().setWater(true);
+                }else{
+                    int chances =this.getMonster().chanceAward();
+                    switch (chances){
+                        case 11:
+                            this.getPlayer().getInventory().setWeapon(new Weapon("Pistol",1,2,25));
+                            break;
+                        case 12:
+                            this.getPlayer().getInventory().setWeapon(new Weapon("Sword",2,3,35));
+                            break;
+                        case 13:
+                            this.getPlayer().getInventory().setWeapon(new Weapon("Rifle",3,7,45));
+                            break;
+                        case 21:
+                            this.getPlayer().getInventory().setArmor(new Armor("Light",1,1,15));
+                            break;
+                        case 22:
+                            this.getPlayer().getInventory().setArmor(new Armor("Middle",2,3,25));
+                            break;
+                        case 23:
+                            this.getPlayer().getInventory().setArmor(new Armor("Heavy",3,5,40));
+                            break;
+                        case 31:
+                            this.getPlayer().getCharacter().setMoney(this.getPlayer().getCharacter().getMoney()+1);
+                            break;
+                        case 32:
+                            this.getPlayer().getCharacter().setMoney(this.getPlayer().getCharacter().getMoney()+5);
+                            break;
+                        case 33:
+                            this.getPlayer().getCharacter().setMoney(this.getPlayer().getCharacter().getMoney()+10);
+                            break;
+                        default:
+                            System.out.println("You are not lucky!");
+                    }
+                }
                 this.getPlayer().getCharacter().setMoney(this.getPlayer().getCharacter().getMoney()+this.getMonster().getAward());
                 System.out.println("Your balance is "+this.getPlayer().getCharacter().getMoney()+" gold.");
             }
             else{
+                return false;
+            }
+
+            if(this.getPlayer().getInventory().isFirewood() &&
+                    this.getPlayer().getInventory().isFood() &&
+                    this.getPlayer().getInventory().isWater()){
+                System.out.println("Congratulations! you have finished the mission!");
                 return false;
             }
         }
@@ -119,23 +168,12 @@ public abstract class BattleLoc extends Location{
         return monster;
     }
 
-    public void setMonster(Monster monster) {
-        this.monster = monster;
-    }
-
     public String getAward() {
         return award;
-    }
-
-    public void setAward(String award) {
-        this.award = award;
     }
 
     public int getMaxMonster() {
         return maxMonster;
     }
 
-    public void setMaxMonster(int maxMonster) {
-        this.maxMonster = maxMonster;
-    }
 }

@@ -7,6 +7,7 @@ public class Monster {
     private int health;
     private int award;
     private int originalHealth;
+    private final double chance = Math.random();
 
     public Monster(String name, int id, int damage, int health,int award) {
         this.name = name;
@@ -15,6 +16,38 @@ public class Monster {
         this.health = health;
         this.award=award;
         this.originalHealth=health;
+    }
+
+    public int chanceAward(){
+        double second = Math.random();
+        int res =0;
+        if(chance<0.15){
+            if(second<0.50){
+                res=11;
+            }else if(second<0.80){
+                res=12;
+            }else{
+                res=13;
+            }
+        }else if(chance<0.30){
+            if(second<0.50){
+                res=21;
+            }else if(second<0.80){
+                res=22;
+            }else{
+                res=23;
+            }
+        } else if(chance<0.55){
+            if(second<0.50){
+                res=31;
+            }else if(second<0.80){
+                res=32;
+            }else{
+                res=33;
+            }
+        }
+        return res;
+
     }
 
     public String getName() {

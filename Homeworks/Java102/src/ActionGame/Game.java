@@ -27,6 +27,7 @@ public class Game {
             System.out.println("3-Cave....(1-3 Zombies could be found!, Award : Food)");
             System.out.println("4-Forest....(1-3 Vampires could be found!, Award : Firewood)");
             System.out.println("5-River....(1-3 Bears could be found!, Award : Water)");
+            System.out.println("6-Mine....(1-5 Snakes could be found!, Award based on chance)");
             System.out.println("Please choose where to go !");
             int selectLoc=input.nextInt();
             switch (selectLoc){
@@ -41,6 +42,9 @@ public class Game {
                     break;
                 case 5:
                     location= new River(player);
+                    break;
+                case 6:
+                    location= new Mine(player);
                     break;
                 default:
                     location = new SafeHouse(player);
