@@ -14,6 +14,7 @@ public class Main {
         int N = input.nextInt();
 
         List<String> teams = new ArrayList<>();
+     
 
         for (int i=0; i<N; i++) {
             System.out.println("Enter team name: ");
@@ -26,7 +27,7 @@ public class Main {
             N +=1;
         }
 
-        List<String> tempTeams = new ArrayList<>();
+        ArrayList<String> tempTeams = new ArrayList<>();
 
         while (0 < teams.size()) {
             int index = (int)(Math.random()*teams.size());
