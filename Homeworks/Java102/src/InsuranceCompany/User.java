@@ -11,18 +11,16 @@ public class User {
     private String password;
     private int age;
     private String occupation;
-    private List<Address> address = new ArrayList<>();
+    private List<Address> address = new ArrayList<>(2);
     private Date lastEntry;
 
-    public User(String name, String surname, String email, String password, int age, String occupation, List<Address> address, Date lastEntry) {
+    public User(String name, String surname, String email, String password, String occupation, int age) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
         this.age = age;
         this.occupation = occupation;
-        this.address = address;
-        this.lastEntry = lastEntry;
     }
 
     public String getName() {
