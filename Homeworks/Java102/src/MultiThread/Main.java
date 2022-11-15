@@ -3,9 +3,9 @@ package MultiThread;
 import java.util.ArrayList;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         ArrayList<Integer> odd = new ArrayList<>();
-        ArrayList<Integer> even = new ArrayList<>();
+        ArrayList<Integer>  even = new ArrayList<>();
 
         Adder a1= new Adder(1,2500,odd,even);
         Adder a2= new Adder(2500,5000,odd,even);
@@ -21,6 +21,19 @@ public class Main {
         t2.start();
         t3.start();
         t4.start();
+
+        try {
+            t1.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        try {
+            t2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        t3.join();
+        t4.join();
 
         try {
             Thread.sleep(9000);

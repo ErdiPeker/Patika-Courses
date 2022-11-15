@@ -17,7 +17,8 @@ public class Adder implements Runnable {
     }
 
     @Override
-    public void run() {
+    public synchronized void run() {
+
         for (int i = this.getStart(); i < this.getEnd(); i++) {
             if (i % 2 == 0) {
                 this.even.add(i);
